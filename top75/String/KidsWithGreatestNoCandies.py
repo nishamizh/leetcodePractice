@@ -1,17 +1,17 @@
 from typing import List
 
-# 16.58mb , 51ms
+# 16.67mb , 34ms
 def kidsWithCandies(candies: List[int], extraCandies: int) -> List[bool]:
     """
     outputlist = [True] * len(candies)
-    for index, value in enumerate(candies):
-        change = value + extraCandies
-        for j in candies:
-            if change >= j:
+        maxl = max(candies)
+        for index, value in enumerate(candies):
+            change = value + extraCandies
+            if change >= maxl:
                 pass
-            elif change < j:
+            elif change < maxl:
                 outputlist[index] = False
-    return outputlist"""
+        return outputlist"""
 
 # alias 2 - 13ms
 
