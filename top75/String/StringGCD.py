@@ -1,16 +1,32 @@
+from math import gcd
+# this return in else part took  8ms more time but .2MB less memory
+"""
 def gcdOfStrings(str1: str, str2: str) -> str:
-    if len(str1) and len(str2) >0:
-        list1=[]
-        for i in range(len(str1)):
-            subStr=''
-            for j in range(len(str2)):
-                if(i+j<len(str1)):
-                    if str1[i+j] == str2[j]:
-                        subStr+=str2[j]
-                else:
-                    break
-            list1.append(subStr) if len(subStr)>0 else None
-    return str(min(list1,key=len)) if len(list1)>0 else ''
+    if str1+str2==str2+str1:
+        lenCommonString = gcd(len(str1),len(str2))
+        return str1[:lenCommonString]
+    else:
+        return ''
+"""
+# this return ''  took  8ms less time but .2MB more  memory
+# if str1 + str2 == str2 + str1:
+#     lenCommonString = gcd(len(str1), len(str2))
+#     return str1[:lenCommonString]
+#
+# return ''
+
+# alias 2
+
+def gcdOfStrings(str1: str, str2: str) -> str:
+    if len(str2) > len(str1):
+        str1,st2 = str2,str1
+
+    if str2==str1: return str1
+
+    if str1[:len(str2)]!=str2:  return ''
+
+    return gcdOfStrings(str1[len(str2):],str2)
+
 
 print(gcdOfStrings("ABCABC","ABC"))
 print(gcdOfStrings("ABABAB","ABAB"))
