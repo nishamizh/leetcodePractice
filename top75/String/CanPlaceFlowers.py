@@ -2,17 +2,28 @@ from typing import List
 
 
 def canPlaceFlowers(flowerbed: List[int], n: int) -> bool:
-    if n == 0:
+
+    if(n==0):
         return True
-    for i in range(len(flowerbed)):
-        if flowerbed[i] == 0 and (i == 0 or flowerbed[i - 1] == 0) and (
-                i == len(flowerbed) - 1 or flowerbed[i + 1] == 0):
-            flowerbed[i] = 1
-            n -= 1
+
+    j = 0
+    if (n > 0):
+        for j in  range(len(flowerbed)):
+            if (flowerbed[j] == 0):
+                if (len(flowerbed) > 1):
+                    if (j == 0 and flowerbed[j + 1] == 0) or ((j == len(flowerbed) - 1) and flowerbed[j - 1] == 0):
+                        flowerbed[j] = 1
+                        n-=1
+                    elif (flowerbed[j - 1] == 0) and (flowerbed[j + 1] == 0):
+                        flowerbed[j] = 1
+                        n-=1
+                else:
+                    flowerbed[j] = 1
+                    n -= 1
             if n == 0:
                 return True
-    return False
 
+    return False
 
 print('T --> ',canPlaceFlowers([0],0))
 print('T --> ',canPlaceFlowers([1,0,0,0,0,0,1],2))
