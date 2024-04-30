@@ -15,17 +15,21 @@ def gcdOfStrings(str1: str, str2: str) -> str:
 #
 # return ''
 
-# alias 2
+# alias 2 - 11mns
 
-def gcdOfStrings(str1: str, str2: str) -> str:
-    if len(str2) > len(str1):
-        str1,st2 = str2,str1
+def gcdOfStrings(self, str1: str, str2: str) -> str:
+    len1, len2 = len(str1), len(str2)
 
-    if str2==str1: return str1
+    def isGCD(l):
+        if len1 % l or len2 % l:
+            return False
+        n1, n2 = len1 // l, len2 // l
+        return str1[:l] * n1 == str1 and str1[:l] * n2 == str2
 
-    if str1[:len(str2)]!=str2:  return ''
-
-    return gcdOfStrings(str1[len(str2):],str2)
+    for l in range(min(len1, len2), 0, -1):
+        if isGCD(l):
+            return str1[:l]
+    return ""
 
 
 print(gcdOfStrings("ABCABC","ABC"))
