@@ -1,13 +1,5 @@
 def reverseWords(s: str) -> str:
-    a = list(s.strip().split())
-    print(a)
-    k =''
-    for i in range(len(a) - 1, -1, -1):
-        k+=a[i]
-        if i != 0:
-            k += ' '
-
-    return k
+    return ' '.join([i for i in s.split(" ")[::-1] if i.strip() != '']).strip()
 
 
 
